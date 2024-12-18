@@ -84,10 +84,10 @@ export default function EditBlogs() {
         }
     }
 
-    useEffect(()=>{
-        fetDataById()
-        onFetchKomentar()
-    },[])
+    useEffect(() => {
+        fetDataById();
+        onFetchKomentar();
+    }, [fetDataById, onFetchKomentar]);
 
     return (
       <>

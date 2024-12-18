@@ -1,3 +1,5 @@
+import Image from 'next/image'; // Import komponen Image dari Next.js
+
 const ItemService = ({
   title,
   subTitle
@@ -6,7 +8,14 @@ const ItemService = ({
     <>
       <div className="w-[310px] bg-white p-5 rounded-xl shadow-lg transition-transform transform hover:scale-105">
         <div className="flex justify-center">
-          <img src="images/coding.png" alt="Service Image" />
+          {/* Menggunakan Image dari Next.js untuk optimasi gambar */}
+          <Image 
+            src="/images/coding.png" // Pastikan path gambar benar
+            alt="Service Image" 
+            width={300} // Tentukan ukuran lebar gambar
+            height={200} // Tentukan ukuran tinggi gambar
+            className="object-contain" // Sesuaikan gaya gambar jika diperlukan
+          />
         </div>
         <div className="text-center mt-4">
           <h3 className="font-semibold text-lg text-[#2D3748]">{title}</h3> {/* Changed title text color */}
@@ -48,7 +57,14 @@ export default function Dashboard() {
           </div>
           {/* Right Side: Avatar */}
           <div className="flex justify-center items-center">
-            <img src="images/arab.jpg" alt="Avatar" className="rounded-full w-40 h-40 object-cover border-4 border-[#DD6B20]" /> {/* Changed border color */}
+            {/* Menggunakan Image dari Next.js untuk avatar */}
+            <Image 
+              src="/images/pakvincent.jpg" // Pastikan path gambar benar
+              alt="Avatar" 
+              width={160} // Tentukan ukuran lebar gambar
+              height={160} // Tentukan ukuran tinggi gambar
+              className="rounded-full object-cover border-4 border-[#DD6B20]" // Menambahkan border dan styling
+            />
           </div>
         </div>
 
@@ -74,4 +90,3 @@ export default function Dashboard() {
     </>
   );
 }
-

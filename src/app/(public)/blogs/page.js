@@ -1,14 +1,19 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image';  // Import komponen Image dari Next.js
 
 const CardItem = ({ title }) => {
   return (
     <div className="cursor-pointer hover:scale-105 hover:shadow-xl transition-transform duration-300 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 w-[280px] rounded-lg">
       <div className="flex justify-center">
-        <img 
+        {/* Ganti dengan Image component untuk optimasi */}
+        <Image 
           className="h-[120px] w-[120px] rounded-full border-4 border-white shadow-lg" 
           src="/images/icon.png" 
+          alt="Icon image"  // Menambahkan alt untuk aksesibilitas
+          width={120}  // Tentukan ukuran gambar
+          height={120}  // Tentukan ukuran gambar
         />
       </div>
       <div className="p-4 bg-white rounded-b-lg shadow-md">
@@ -20,27 +25,30 @@ const CardItem = ({ title }) => {
 
 export default function Blogs() {
   const router = useRouter();
-  const [data, setData] = useState([])
-  const [isLoading, setLoading] = useState(true)
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
   const onFetchBlogs = async () => {
     try {
-      setLoading(true)
-      let res = await fetch('/api/blogs')
-      let data = await res.json()
-      setData(data.data)
-      setLoading(false)
+      setLoading(true);
+      const res = await fetch('/api/blogs');
+      if (!res.ok) {
+        throw new Error('Failed to fetch blogs');
+      }
+      const data = await res.json();
+      setData(data.data);
     } catch (err) {
-      console.log('err', err)
-      setData([])
-      setLoading(false)
+      console.error('Error fetching blogs:', err);
+      setData([]);
+    } finally {
+      setLoading(false);
     }
   }
 
   useEffect(() => {
-    onFetchBlogs()
-  }, [])
+    onFetchBlogs();
+  }, []);  // Hanya dijalankan sekali saat component mount
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -73,10 +81,10 @@ export default function Blogs() {
 
       <div className="flex justify-center gap-12 flex-wrap mt-10">
         {filteredData.length > 0 ? (
-          filteredData.map((item, key) => (
+          filteredData.map((item) => (
             <div 
+              key={item._id}  // Gunakan ID unik sebagai key
               onClick={() => router.push(`/blogs/${item._id}`)} 
-              key={key}
             > 
               <CardItem 
                 title={item.title}
