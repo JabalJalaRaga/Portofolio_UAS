@@ -1,7 +1,8 @@
-'use client'
+'use client';  // Menandakan bahwa komponen ini harus dirender di sisi klien
+
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Card from '../../../../components/card';
-import { useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';  // Menggunakan useParams untuk mengambil ID dari URL
 import { Editor } from '@tinymce/tinymce-react';
 import ConfigDialog from '../../../../components/ConfirmDialog';
 
@@ -11,14 +12,14 @@ export default function Blogsbyid() {
     const [modal, setModal] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
     const [modalMessage, setModalMessage] = useState("");
-    const params = useParams();
+    const params = useParams();  // Mendapatkan parameter URL
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [datakomen, setDataKomen] = useState({
         nama: '',
         email: '',
         komentar: '',
-        blogId: params.id
+        blogId: params.id  // Menggunakan params.id untuk menghubungkan komentar dengan blog
     });
     const [isLoadingKomentar, setLoadingKomentar] = useState(false);
     const [dataKomentar, setDataKomentar] = useState([]);
@@ -32,7 +33,7 @@ export default function Blogsbyid() {
             nama: '',
             email: '',
             komentar: '',
-            blogId: params.id
+            blogId: params.id  // Pastikan ID blog tetap terisi dengan params.id
         });
     };
 
