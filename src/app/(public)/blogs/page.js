@@ -92,7 +92,7 @@ export default function Blogs() {
             </div>
           ))
         ) : (
-          <div className="text-center text-xl text-gray-500">No blogs found for "{searchTerm}"</div>
+          <div className="text-center text-xl text-gray-500">No blogs found for &quot;{searchTerm}&quot;</div>
         )}
       </div>
     </div>
