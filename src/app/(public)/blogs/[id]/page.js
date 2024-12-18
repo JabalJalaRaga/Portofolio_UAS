@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Card from '../../../../components/card';
 import { useParams } from 'next/navigation';
