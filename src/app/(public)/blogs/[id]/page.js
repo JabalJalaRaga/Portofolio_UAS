@@ -1,4 +1,4 @@
-'use client';  // Menandakan bahwa komponen ini harus dirender di sisi klien
+"use client";  // Menandakan bahwa komponen ini harus dirender di sisi klien
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Card from '../../../../components/card';
