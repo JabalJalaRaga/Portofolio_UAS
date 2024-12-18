@@ -19,18 +19,8 @@ export default function EditBlogs() {
         content:'',
         _id:''
     });
-    const [dataKomentar, setDataKomentar] = useState([])
-    const onFetchKomentar=async()=>{
-        try{
 
-            let res = await fetch(`/api/komenblog/${params.id}`)
-            let data = await res.json()
-            setDataKomentar(data.data)
-        }catch(err){
-            console.log('err', err)
-            setDataKomentar([])
-        }
-    }
+
     const fetDataById = async ()=>{
         try{
             const res = await fetch(`/api/blogs/${params.id}`);
@@ -63,6 +53,7 @@ export default function EditBlogs() {
             if (editorRef.current) {
                 const body = data
                 body.content = editorRef.current.getContent();
+
                 let res = await fetch(`/api/blogs/${data._id}`, {
                     method:'PUT',
                     body: JSON.stringify(body),
@@ -86,7 +77,6 @@ export default function EditBlogs() {
 
     useEffect(()=>{
         fetDataById()
-        onFetchKomentar()
     },[])
 
     return (
@@ -138,17 +128,6 @@ export default function EditBlogs() {
                 </span>
             </button> 
         </Card>
-
-        {
-            dataKomentar.map( (komen,idx) => <Card className="mt-5" key={idx} title={komen.nama}>
-                <div  dangerouslySetInnerHTML={{ __html: komen.komentar }} />
-                <div className='w-full my-2'>
-
-                </div>
-            </Card> 
-            
-            )
-        }
 
         <ConfigDialog  
             onOkOny={()=>onOkOnly()} 
