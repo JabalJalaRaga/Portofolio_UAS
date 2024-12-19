@@ -81,6 +81,7 @@ export default function EditBlogs() {
 
     return (
       <>
+      <script src="https://cdn.tiny.cloud/1/lopm9iod6pq3sjplrlzfci7evi5z26jlobx9pdi93q38207z/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
         <Card title="Blogs Edit Form">
             <div className="w-full my-2">
                 <label>Title</label>
