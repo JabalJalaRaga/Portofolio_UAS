@@ -10,7 +10,7 @@ const CardItem = ({ title }) => {
         {/* Ganti dengan Image component untuk optimasi */}
         <Image 
           className="h-[120px] w-[120px] rounded-full border-4 border-white shadow-lg" 
-          src="/images/artik.jpg" 
+          src="/images/icon.png" 
           alt="Icon image"  // Menambahkan alt untuk aksesibilitas
           width={120}  // Tentukan ukuran gambar
           height={120}  // Tentukan ukuran gambar
